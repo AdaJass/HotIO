@@ -12,22 +12,27 @@ import staticfile as static
 
 async def logout(request): 
     data={}
-    data['title']='登录' 
+    data['title']='登录'
     data['main']=static.assets
     res = aiohttp_jinja2.render_template('login.jinja2',
                                               request,
                                               data)
-    res.set_cookie('uid','logout')
+    res.set_cookie('Authentication','logout')
     return res
     
 async def login(request): 
     data={}
     data['title']='登录' 
     data['main']=static.assets
-    res = aiohttp_jinja2.render_template('loging.jinja2',
-                                              request,
-                                              data)
-    res.set_cookie('uid','xhzbglyxgs')
+    #print(dir(request),'\n\n')
+    para = await request.post()
+    if para['user'] == Auth.users['uid'] and para['psw'] == Auth.users['psw']:
+      res = aiohttp_jinja2.render_template('loging.jinja2',
+                                                request,
+                                                data)
+      res.set_cookie('Authentication','JDKEJKjdkjgkjKDJJKjiei439954JKJDFK9482jkgKJDKjgijiKDJ394')
+    else:
+      return web.HTTPFound('/')
     return res
 
 app = web.Application(middlewares=[Auth.middleware_factory])
