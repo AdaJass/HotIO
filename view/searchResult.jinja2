@@ -1,0 +1,79 @@
+{% extends 'layout.jinja2' %}
+    
+{% block content %}
+    <div id="content">
+        <h2 id="title">请稍等...</h2>
+        <table>
+            <tr>
+                <td id="baidu">                    
+                </td>
+                <td id="zhihu">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">百度数据</td>
+                <td align="center">知乎数据</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td id="tieba">                    
+                </td>
+                <td id="weibo">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">贴吧数据</td>
+                <td align="center">微博数据</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td id="vote36kr">                    
+                </td>
+                <td id="null">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">36氪数据</td>
+                <td align="center"></td>
+            </tr>
+        </table>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var resultList=[]
+/*var picLists=['baidu.jpg','zhihu.jpg','.jpg',]
+var picNameLists=[]*/
+var getResult=function(){
+  $.get("/private/result_data",function(data,status){
+    if(data=='0') return;
+    if(data=='1') {
+        $('#title').text('结果加载结束')
+        clearInterval(timer);
+        return;
+     }
+    var print=true;
+    var list=data.split(',');
+    for(var i=0,ll=list.length; i<ll; i++){
+        for(var j=0,lr=resultList.length; j<lr; j++){
+            if(list[i]==resultList[j]){
+                print=false;
+                break; 
+            }                     
+        }
+        if(print==true){
+            resultList.push(list[i]);
+            $('#'+list[i]).html('<img src="/private/pictures/'+ list[i] +'.jpg" >');
+            /*alert(list[i]+'!!!');*/
+        }
+        /*alert(data);*/
+    }  
+    
+  });
+}
+var timer=setInterval(getResult,1500);
+</script>
+
+{% endblock %}
