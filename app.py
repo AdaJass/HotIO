@@ -1,3 +1,6 @@
+import sys
+import os
+os.chdir(sys.path[0])
 import asyncio
 from aiohttp import web
 import aiohttp_jinja2
@@ -35,4 +38,4 @@ app.router.add_route('POST', '/private/makesearch', hot.makeSearch)
 app.router.add_route('POST','/logout', logout)
 app.router.add_static('/static/', './bower_components')
 app.router.add_static('/private/', './public')
-web.run_app(app)
+web.run_app(app,port=80)

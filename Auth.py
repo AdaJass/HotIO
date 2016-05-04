@@ -4,7 +4,7 @@ from aiohttp import web
 import staticfile as static
 import aiohttp_jinja2
 
-users={'uid':'xhzb','psw':'xhzbglyxgs2015'}
+users={'uid':'xhzb','psw':'xhzb2015'}
 cookies={'Authentication':'JDKEJKjdkjgkjKDJJKjiei439954JKJDFK9482jkgKJDKjgijiKDJ394'}
 
 @aiohttp_jinja2.template('login.jinja2')
