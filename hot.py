@@ -9,7 +9,7 @@ import os
 @aiohttp_jinja2.template('inputHotKey.jinja2')
 async def searchPage(request):
     data={}
-    data['title']='登录' 
+    data['title']='Hot' 
     data['main']=static.assets           
     return data
     pass
@@ -43,7 +43,7 @@ async def makeSearch(request):
                 os.remove('./'+str(x))
 
     data={}
-    data['title']='登录' 
+    data['title']='查询结果' 
     data['main']=static.assets           
     return data
     pass
@@ -57,7 +57,7 @@ def responseResult(request):
                 text+=x.stem+','
                 n+=1
 
-    if n == 4:
+    if n == 3:
         text='1'
     if n==0:
         text='0'

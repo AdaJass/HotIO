@@ -17,7 +17,7 @@ async def loginPage(request):
 
 async def login(request): 
     data={}
-    data['title']='登录' 
+    data['title']='Hot' 
     data['main']=static.assets
     #print(dir(request),'\n\n')
     para = await request.post()
