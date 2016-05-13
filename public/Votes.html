@@ -9,17 +9,22 @@
 <iframe id="iframe1" width="100%" height="500" src="./regist.html"></iframe>
 <br>
 <br>
-    <a href="#" onclick="gotovote()"><b>转到投票页面</b></a>&nbsp;&nbsp;
-    <a href="#" onclick="gotoregist()"><b>继续注册</b></a>
+    <a href="#" onclick="gotovote()"><b>一键投票</b></a>&nbsp;&nbsp;
+    <a href="#" onclick="gotoregist()"><b>继续注册</b></a>&nbsp;&nbsp;
+    <a href="#" onclick="gotoresult()"><b>转到投票页面</b></a>&nbsp;&nbsp;
 
 <script type="text/javascript">
     var gotovote=function(){
         $('iframe').attr('src','./voteit.html');
-    } 
+    };
 
     var gotoregist=function(){
         $('iframe').attr('src','./regist.html');
-    } 
+    };
+
+    var gotoresult=function(){
+        $('iframe').attr('src','http://iyiou.com/a/inno2016/vote_detail/id/8/type/15');
+    };
     
 </script>
 </body>
