@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一直投</title>
+   <meta charset="utf-8">
+   <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
+</head>
+<body>
+<iframe id="iframe1" width="100%" height="500" src="./regist.html"></iframe>
+<br>
+<br>
+    <a href="#" onclick="gotovote()"><b>转到投票页面</b></a>&nbsp;&nbsp;
+    <a href="#" onclick="gotoregist()"><b>继续注册</b></a>
+
+<script type="text/javascript">
+    var gotovote=function(){
+        $('iframe').attr('src','http://www.iyiou.com/a/inno2016/vote_detail/id/8/type/15');
+    } 
+
+    var gotoregist=function(){
+        $('iframe').attr('src','./regist.html');
+    } 
+    
+</script>
+</body>
+</html>

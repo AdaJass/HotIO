@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Funny Thing</title>
+    <meta charset="utf-8">
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <form action="http://www.iyiou.com/index.php?s=/user/register.html" method="post">
+
+        <div class="form-group">
+
+            <input type="text" id="username" onblur="setNickname(this);" class="form-control" placeholder="请输入用户名" ajaxurl="/member/checkUserNameUnique.html" errormsg="请填写4-16位用户名" nullmsg="请填写用户名" datatype="*4-16" value="" name="username" ></div>
+
+        <div class="form-group">
+
+            <input type="text" id="inputEmail" class="form-control" placeholder="请输入电子邮件" ajaxurl="/member/checkUserEmailUnique.html" errormsg="请填写正确格式的邮箱" nullmsg="请填写邮箱" datatype="e" value="" name="email">
+
+            <span class="help-block">请输入邮箱地址</span>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+        <div class="form-group">
+
+            <div id="password_block" class="input-group">
+
+                <input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+
+                <div class="input-group-addon">
+                    <a style="width: 100%;height: 100%" href="javascript:void(0);" onclick="change_show(this)">显示密码</a>
+                </div>
+
+            </div>
+
+            <span class="help-block">请输入密码</span>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-xs-4" style="padding: 0px;">
+
+                <input type="text" id="verifyCode" class="form-control" placeholder="验证码" errormsg="请填写验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify"></div>
+
+            <div class="col-xs-8 lg_lf_fm_verify">
+
+                <img class="verifyimg reloadverify  " alt="点击切换" src="http://www.iyiou.com/index.php?s=/user/verify.html" style="cursor:pointer;max-width: 100%"></div>
+
+            <div class="col-xs-12 Validform_checktip text-warning lg_lf_fm_tip col-xs-offset-1"></div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+        <div style="float: left;vertical-align: bottom;margin-top: 12px;color: #848484;">
+            如果您已经成为亿欧网会员，
+            <a href="/User/login" title="如果您已经成为亿欧网会员，请直接登录" style="color: #3886c2;">登录</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary pull-right">注 册</button>
+
+    </form>
+
+    <script type="text/javascript">
+            var name = Math.floor(Math.random()*10000000000000)+'';
+            $('input#username').attr('value',name)
+            $('input#inputEmail').attr('value',name+'@skjg.com');
+            $('input#inputPassword').attr('value',name);
+
+   
+        </script>
+
+</body>
+</html>
