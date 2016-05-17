@@ -36,7 +36,6 @@ async def makeSearch(request):
 
     # print(evalStr)
     os.system(evalStr)
-    print('no wrong here.')
     for x in p('./private/pictures').iterdir():
         if x.is_file():                        
             if x.match('*.jpg'):
