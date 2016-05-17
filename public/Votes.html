@@ -4,14 +4,26 @@
     <title>一直投</title>
    <meta charset="utf-8">
    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
+   <script type="text/javascript">
+   	$(function(){
+    var winWidth,winHeight;
+    Resize = function(){
+        winWidth = $(window).width(),
+        winHeight= $(window).height();
+    }
+});
+   </script>
 </head>
-<body>
-<iframe id="iframe1" width="300" height="200" src="./regist.html"></iframe>
+<body onResize="Resize()" onLoad="Resize()">
+<iframe marginwidth="" height="300" scrolling="yes" src="./regist.html"></iframe>
 <br>
 <br>
     <a href="#" onclick="gotovote()"><b>一键投票</b></a>&nbsp;&nbsp;
     <a href="#" onclick="gotoregist()"><b>继续注册</b></a>&nbsp;&nbsp;
-    <a href="#" onclick="gotoresult()"><b>投票页面</b></a>&nbsp;&nbsp;
+    <a href="#" onclick="gotoresult()"><b>投票页面</b></a>&nbsp;&nbsp;<br>
+    注：注册显示成功后，可以点击【一键投票】进行投票。<br>
+    一键投票后返回的"status"当且仅当是 1 表示投票成功,<br>
+    你也可以在注册成功后进入【投票页面】投票。
 
 <script type="text/javascript">
     var gotovote=function(){
@@ -25,6 +37,7 @@
     var gotoresult=function(){
         $('iframe').attr('src','http://iyiou.com/a/inno2016/vote_detail/id/8/type/15');
     };
+
     
 </script>
 </body>

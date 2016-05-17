@@ -36,7 +36,8 @@ async def makeSearch(request):
 
     # print(evalStr)
     os.system(evalStr)
-    for x in p('./public/pictures').iterdir():
+    print('no wrong here.')
+    for x in p('./private/pictures').iterdir():
         if x.is_file():                        
             if x.match('*.jpg'):
                 #print(x)
@@ -51,7 +52,7 @@ async def makeSearch(request):
 def responseResult(request):
     text=''
     n=0
-    for x in p('./public/pictures').iterdir():
+    for x in p('./private/pictures').iterdir():
         if x.is_file():                        
             if x.match('*.jpg'):                
                 text+=x.stem+','
