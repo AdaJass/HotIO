@@ -8,6 +8,7 @@ import jinja2
 import Auth
 import staticfile as static
 import hot
+import vote
 
 # async def middleware_factory(app, handler):
 #     async def middleware_handler(request):        
@@ -35,6 +36,7 @@ app.router.add_route('GET', '/private/search', hot.searchPage)
 app.router.add_route('GET','/private/result_data', hot.responseResult)
 app.router.add_route('POST', '/login', Auth.login)
 app.router.add_route('POST', '/private/makesearch', hot.makeSearch)
+app.router.add_route('POST', '/succeedregist', vote.succeedregist)
 app.router.add_route('POST','/logout', logout)
 app.router.add_static('/static/', './bower_components')
 app.router.add_static('/private/', './private')
