@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <style type="text/css">
+        canvas{border:dashed 2px #CCC}
+    </style>
+    <script type="text/javascript">
+        function $$(id){
+            return document.getElementById(id);
+        }  
+        
+        function pageLoad(){
+            var can = $$('can');
+            var cans = can.getContext('2d');
+            var Me=[];
+            var fluctuate = 100;
+            var width=800;
+            var height=600;
+            //can.width='"'+width+'px"';
+            //can.height='"'+height+'px"';
+
+            var start=height;
+            var scale=height/width;            
+            for(var i=1,n=0;i<=width;i=i+1){                
+                var sca= scale+1*(Math.random()-0.5);
+                var tem=height-(sca*i+10*(Math.random()-0.5));
+                /*if(tem>600||tem<0)
+                    tem=height-scale*i;*/
+                Me[n++]=[i, tem];
+
+            }
+            cans.moveTo(0,height);
+            
+            for(var i=0;i<Me.length;i++)
+                cans.lineTo(Me[i][0],Me[i][1]);            
+            
+            var gnt1 = cans.createLinearGradient(0,0,width,height);//线性渐变的起止坐标
+            gnt1.addColorStop(0,'yellow');//创建渐变的开始颜色，0表示偏移量，个人理解为直线上的相对位置，最大为1，一个渐变中可以写任意个渐变颜色
+            gnt1.addColorStop(1,'red');
+            cans.lineWidth=3;
+            cans.strokeStyle = gnt1;
+            cans.stroke();
+        }
+    </script>
+    <body onload="pageLoad();">
+        <canvas id="can" width="800px" height="600px">4</canvas>
+        <div>
+            <h3>
+            &nbsp;&nbsp;这就是我，我的脾气，情感，还有智慧随着时间增长显示着极大的不确定性。
+            今天看到一句话，感触很大“即会思考又坐得住的人太少了。”  <br>
+            &nbsp;&nbsp;而我要安静下来，必定要比别人更费力。所以我比起我自己，更相信别人和我的EA。              
+
+            </h3>
+        </div>
+    </body>
+</html>
