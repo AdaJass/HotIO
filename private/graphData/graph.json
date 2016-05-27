@@ -1,1 +1,156 @@
-[{"date":"2016-04-26","people":"30","clicks":"30","cost":"36.22","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-04-27","people":"41","clicks":"42","cost":"49.470000000000006","conversions":"2","revenue":"108","linkcost":"9.677"},{"date":"2016-04-28","people":"28","clicks":"28","cost":"33.68999999999999","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-04-29","people":"19","clicks":"19","cost":"22.02","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-04-30","people":"17","clicks":"18","cost":"22.25","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-01","people":"25","clicks":"26","cost":"30.68999999999999","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-02","people":"34","clicks":"39","cost":"46.000000000000014","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-03","people":"13","clicks":"13","cost":"14.85","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-04","people":"21","clicks":"22","cost":"25.04","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-05","people":"27","clicks":"31","cost":"39.120000000000005","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-06","people":"29","clicks":"30","cost":"33.24999999999999","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-07","people":"11","clicks":"11","cost":"12.610000000000001","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-08","people":"20","clicks":"21","cost":"21.8","conversions":"1","revenue":"29","linkcost":"9.677"},{"date":"2016-05-09","people":"14","clicks":"14","cost":"15.76","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-10","people":"21","clicks":"21","cost":"23.499999999999993","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-11","people":"23","clicks":"24","cost":"28.049999999999997","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-12","people":"33","clicks":"33","cost":"37.59","conversions":"2","revenue":"178","linkcost":"9.677"},{"date":"2016-05-13","people":"29","clicks":"29","cost":"31.29999999999999","conversions":"1","revenue":"29","linkcost":"9.677"},{"date":"2016-05-14","people":"19","clicks":"19","cost":"21.99","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-15","people":"18","clicks":"18","cost":"17.999999999999996","conversions":"1","revenue":"29","linkcost":"9.677"},{"date":"2016-05-16","people":"36","clicks":"36","cost":"42.09000000000001","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-17","people":"25","clicks":"25","cost":"28.269999999999996","conversions":"1","revenue":"29","linkcost":"9.677"},{"date":"2016-05-18","people":"30","clicks":"30","cost":"35.38999999999999","conversions":"1","revenue":"299","linkcost":"9.677"},{"date":"2016-05-19","people":"24","clicks":"24","cost":"28.220000000000002","conversions":"1","revenue":"29","linkcost":"9.677"},{"date":"2016-05-20","people":"28","clicks":"30","cost":"36.14999999999999","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-21","people":"17","clicks":"17","cost":"17.51","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-22","people":"23","clicks":"23","cost":"23.959999999999997","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-23","people":"14","clicks":"14","cost":"16.75","conversions":"1","revenue":"29","linkcost":"9.677"},{"date":"2016-05-24","people":"14","clicks":"14","cost":"17.5","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":"2016-05-25","people":"18","clicks":"18","cost":"18.04","conversions":"0","revenue":"0","linkcost":"9.677"},{"date":null,"people":"688","clicks":"719","cost":836.757,"conversions":"11","revenue":"759","linkcost":"9.677"}]
+[{
+    "date": "2016-02-26",
+    "people": "30",
+    "clicks": "30",
+    "conversions": "0"    
+}, {
+    "date": "2016-04-27",
+    "people": "41",
+    "clicks": "42",
+    "conversions": "2"    
+}, {
+    "date": "2016-04-28",
+    "people": "28",
+    "clicks": "28",
+    "conversions": "92"    
+}, {
+    "date": "2016-04-29",
+    "people": "19",
+    "clicks": "19",
+    "conversions": "5"    
+}, {
+    "date": "2016-04-30",
+    "people": "17",
+    "clicks": "18",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-01",
+    "people": "25",
+    "clicks": "26",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-02",
+    "people": "34",
+    "clicks": "39",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-03",
+    "people": "13",
+    "clicks": "13",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-04",
+    "people": "21",
+    "clicks": "22",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-05",
+    "people": "27",
+    "clicks": "31",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-06",
+    "people": "29",
+    "clicks": "30",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-07",
+    "people": "11",
+    "clicks": "11",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-08",
+    "people": "20",
+    "clicks": "21",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-09",
+    "people": "14",
+    "clicks": "14",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-10",
+    "people": "21",
+    "clicks": "21",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-11",
+    "people": "23",
+    "clicks": "24",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-12",
+    "people": "33",
+    "clicks": "33",
+    "conversions": "2"    
+}, {
+    "date": "2016-05-13",
+    "people": "29",
+    "clicks": "29",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-14",
+    "people": "19",
+    "clicks": "19",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-15",
+    "people": "18",
+    "clicks": "18",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-16",
+    "people": "36",
+    "clicks": "36",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-17",
+    "people": "25",
+    "clicks": "25",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-18",
+    "people": "30",
+    "clicks": "30",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-19",
+    "people": "24",
+    "clicks": "24",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-20",
+    "people": "28",
+    "clicks": "30",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-21",
+    "people": "17",
+    "clicks": "17",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-22",
+    "people": "23",
+    "clicks": "23",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-23",
+    "people": "14",
+    "clicks": "14",
+    "conversions": "1"    
+}, {
+    "date": "2016-05-24",
+    "people": "14",
+    "clicks": "14",
+    "conversions": "0"    
+}, {
+    "date": "2016-05-25",
+    "people": "18",
+    "clicks": "18",
+    "conversions": "0"    
+}, {
+    "date": null,
+    "people": "688",
+    "clicks": "719",
+    "conversions": "11"    
+}]

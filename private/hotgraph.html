@@ -160,16 +160,10 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
       $('#graph h1, #graph h2').html('&nbsp;');
       $('#graph .metric1 h1').html('<i class="fa fa-spinner fa-spin"></i>');
 
-      var jsonurl = '/private/graphData/graph.json?filters[ad]=1';
-      jsonurl += '&filters[goal]=' + encodeURIComponent(userprefs.goal);
-      jsonurl += '&metric1=' + userprefs.metric1 + '&metric2=' + userprefs.metric2 + '&units=' + userprefs.units;
-
-      if (typeof location.search == 'string' && location.search.length > 0)
-        jsonurl += '&' + location.search.substring(1);
-
+      var jsonurl = '/private/respond_data?page=json&type=graph';      
+      /*jsonurl += '&web1=' + userprefs.metric1 + '&web2=' + userprefs.metric2;*/      
       if (typeof start != 'undefined' && typeof end != 'undefined' && start != null & end != null)
-        jsonurl += '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end);
-      
+        jsonurl += '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end);     
       $.getJSON(jsonurl, function(data) {
           if (data.length != 0) imGraph('graph', data);
       });

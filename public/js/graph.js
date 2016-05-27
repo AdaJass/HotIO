@@ -23685,12 +23685,12 @@ $(document).ready(function() {
     });
     var d = {
         ranges: {
-            "本月": [new Date, new Date],
-            "最近两月": [moment().subtract(1, "days"), moment().subtract(1, "days")],
-            "最近半年": [moment().subtract(6, "days"), new Date],
-            "最近一年": [moment().subtract(29, "days"), new Date],
-            "最近两年": [moment().startOf("month"), moment().endOf("month")],
-            "最近三年": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
+            "本月": [moment().subtract(1, "days"), moment().subtract(30, "days")],
+            "最近两月": [moment().subtract(1, "days"), moment().subtract(60, "days")],
+            "最近半年": [moment().subtract(1, "days"), moment().subtract(180, "days")],
+            "最近一年": [moment().subtract(1, "days"), moment().subtract(365, "days")],
+            "最近两年": [moment().subtract(1, "days"), moment().subtract(730, "days")],
+            "最近三年": [moment().subtract(1, "days"), moment().subtract(1095, "days")]
         },
         opens: "left",
         locale: {

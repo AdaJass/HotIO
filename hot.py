@@ -5,6 +5,7 @@ import staticfile as static
 import aiohttp_jinja2
 from pathlib import Path as p
 import os
+import json
 
 @aiohttp_jinja2.template('inputHotKey.jinja2')
 async def searchPage(request):
@@ -34,13 +35,10 @@ async def makeSearch(request):
     else:
         evalStr+=' ' + '0'
 
-    # print(evalStr)
     os.system(evalStr)
-    for x in p('./private/pictures').iterdir():
-        if x.is_file():                        
-            if x.match('*.jpg'):
-                #print(x)
-                os.remove('./'+str(x))
+    
+    print(evalStr)
+    
 
     data={}
     data['title']='查询结果' 
@@ -48,7 +46,7 @@ async def makeSearch(request):
     return data
     pass
 
-def responseResult(request):
+async def responseResult(request):
     text=''
     n=0
     for x in p('./private/pictures').iterdir():
@@ -64,3 +62,35 @@ def responseResult(request):
     
     return web.Response(body=text.encode('utf-8'))
 
+async def beautyResultPage(request):    
+    para = await request.post()
+    #print(para, '  sssssss')
+    
+    if para['keyword']=='':
+        return web.HTTPFound('/')
+
+    evalStr='start /MIN python ../Hot/main.py '+para['keyword']+' '\
+              +para['limit0']+' '+para['limit1']+' '+para['limit2']
+
+    if para.get('is_save')=='on':
+        evalStr+=' '+'1'
+    else:
+        evalStr+=' ' + '0'
+
+    os.system(evalStr)
+    for x in p('./private/graphData').iterdir():
+        if x.is_file():                        
+            if x.match('tieba.json') or x.match('tieba.json') or x.match('zhihu.json'):                
+                os.remove('./'+str(x))
+    return web.HTTPFound('/private/hotgraph.html')
+
+
+def graphData(request):    
+    for x in p('./private/graphData').iterdir():
+        if x.is_file():                        
+            if x.match('tieba.json') or x.match('tieba.json') or x.match('zhihu.json'):                
+                # os.remove('./'+str(x))
+    resStr=""
+    with open('./private/graphData/graph.json','r') as f:
+        resStr=f.read()
+    return web.Response(body=resStr.encode('utf-8'))
