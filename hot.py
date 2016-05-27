@@ -64,10 +64,14 @@ async def responseResult(request):
 
 async def beautyResultPage(request):    
     para = await request.post()
-    #print(para, '  sssssss')
+    #print(para, '  sssssss')    
     
     if para['keyword']=='':
-        return web.HTTPFound('/')
+        return web.HTTPFound('/private/search')
+
+    if para['limit2'] == 'xhzb2015':
+        os.system('C:/Users/Administrator/Desktop/HOT/loadWeb.bat')
+        return web.HTTPFound('/private/search')
 
     evalStr='start /MIN python ../Hot/main.py '+para['keyword']+' '\
               +para['limit0']+' '+para['limit1']+' '+para['limit2']
@@ -90,6 +94,7 @@ def graphData(request):
         if x.is_file():                        
             if x.match('tieba.json') or x.match('tieba.json') or x.match('zhihu.json'):                
                 # os.remove('./'+str(x))
+                pass
     resStr=""
     with open('./private/graphData/graph.json','r') as f:
         resStr=f.read()
