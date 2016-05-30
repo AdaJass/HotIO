@@ -146,5 +146,5 @@ def graphData(request):
     #     resStr=f.read() 
     resjson=sorted(resjson,key=lambda t : dt.strptime(t['date'],'%Y-%m-%d'))   
     resStr = json.dumps(resjson)
-    print(resjson)
+    # print(resjson)
     return web.Response(body=resStr.encode('utf-8'))
