@@ -150,33 +150,203 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
   var nodata = $('#report tbody .nodata').hide().clone();*/
 
   $(document).ready(function() {
-      /*getTable();*/
       getGraph();
-      timer=setInterval(getGraph,3000);
+      timer=setInterval(wrapper,4000);
+      //drawGraph();
   });
 
-  function getGraph(start, end) {
+  var jsondata=[
+    {    
+        "date": "2016-04-26",
+        "people": "30",
+        "clicks": "37",
+        "conversions": "5"    
+    }, {
+        "date": "2016-04-27",
+        "people": "41",
+        "clicks": "42",
+        "conversions": "2"    
+    }, {
+        "date": "2016-04-28",
+        "people": "28",
+        "clicks": "58",
+        "conversions": "12"    
+    }, {
+        "date": "2016-04-29",
+        "people": "19",
+        "clicks": "23",
+        "conversions": "5"    
+    }, {
+        "date": "2016-04-30",
+        "people": "17",
+        "clicks": "18",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-01",
+        "people": "25",
+        "clicks": "27",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-02",
+        "people": "34",
+        "clicks": "39",
+        "conversions": "3"    
+    }, {
+        "date": "2016-05-03",
+        "people": "13",
+        "clicks": "16",
+        "conversions": "5"    
+    }, {
+        "date": "2016-05-04",
+        "people": "21",
+        "clicks": "23",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-05",
+        "people": "27",
+        "clicks": "31",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-06",
+        "people": "50",
+        "clicks": "35",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-07",
+        "people": "11",
+        "clicks": "19",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-08",
+        "people": "20",
+        "clicks": "21",
+        "conversions": "1"    
+    }, {
+        "date": "2016-05-09",
+        "people": "14",
+        "clicks": "15",
+        "conversions": "2"    
+    }, {
+        "date": "2016-05-10",
+        "people": "21",
+        "clicks": "27",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-11",
+        "people": "23",
+        "clicks": "24",
+        "conversions": "5"    
+    }, {
+        "date": "2016-05-12",
+        "people": "33",
+        "clicks": "33",
+        "conversions": "2"    
+    }, {
+        "date": "2016-05-13",
+        "people": "29",
+        "clicks": "22",
+        "conversions": "1"    
+    }, {
+        "date": "2016-05-14",
+        "people": "19",
+        "clicks": "19",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-15",
+        "people": "11",
+        "clicks": "18",
+        "conversions": "1"    
+    }, {
+        "date": "2016-05-16",
+        "people": "36",
+        "clicks": "34",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-17",
+        "people": "25",
+        "clicks": "27",
+        "conversions": "1"    
+    }, {
+        "date": "2016-05-18",
+        "people": "20",
+        "clicks": "30",
+        "conversions": "1"    
+    }, {
+        "date": "2016-05-19",
+        "people": "24",
+        "clicks": "24",
+        "conversions": "3"    
+    }, {
+        "date": "2016-05-20",
+        "people": "28",
+        "clicks": "30",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-21",
+        "people": "17",
+        "clicks": "12",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-22",
+        "people": "23",
+        "clicks": "25",
+        "conversions": "2"    
+    }, {
+        "date": "2016-05-23",
+        "people": "14",
+        "clicks": "14",
+        "conversions": "1"    
+    }, {
+        "date": "2016-05-24",
+        "people": "15",
+        "clicks": "14",
+        "conversions": "0"    
+    }, {
+        "date": "2016-05-25",
+        "people": "18",
+        "clicks": "13",
+        "conversions": "0"    
+    }/*, {
+        "date": null,
+        "people": "688",
+        "clicks": "719",
+        "conversions": "11"    
+    }*/
+  ];
 
+  var inter=0; 
+
+  function wrapper(){
+    inter++;
+    getGraph();
+    inter++;
+  }
+ 
+  function getGraph(start, end) {    
       $('#graph .placeholder').html('<div style="padding: 40px 0 0 0; text-align: center; font-size: 18px">Loading...</div>');
       $('#graph h1, #graph h2').html('&nbsp;');
-      $('#graph .metric1 h1').html('<i class="fa fa-spinner fa-spin"></i>');
-
+      $('#graph .metric1 h1').html('<i class="fa fa-spinner fa-spin"></i>');     
       var jsonurl = '/private/respond_data?page=json&type=graph';      
       /*jsonurl += '&web1=' + userprefs.metric1 + '&web2=' + userprefs.metric2;*/      
       if (typeof start != 'undefined' && typeof end != 'undefined' && start != null & end != null)
-        jsonurl += '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end);     
+        jsonurl += '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end);
+
       $.getJSON(jsonurl, function(data) {
           if (data.length != 0){
             //alert(data);
             //jsonData=JSON.parse(data);
             //alert(data[0]);
             if(data[0]['clicks']!=undefined&&data[0]['people']!=undefined&&data[0]['conversions']!=undefined)
-            {              
+            {                  
               //alert("i have been here!!");
               if(timer)
                 clearInterval(timer);
-            }
-            imGraph('graph', data);
+              imGraph('graph', data);
+            }else if(inter%2==0){
+              imGraph('graph',jsondata);              
+            }             
+          }else if(inter%2==0){
+              imGraph('graph',jsondata);              
           } 
       });
 

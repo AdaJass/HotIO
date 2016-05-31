@@ -137,8 +137,8 @@ def graphData(request):
                                 D[name]: js[key]
                             })
 
-    # if n >= 3:
-    #     return web.Response(body='OK'.encode('utf-8'))
+    if n < 3:
+        return web.Response(body='no completed'.encode('utf-8'))
 
 
     # resStr=""
