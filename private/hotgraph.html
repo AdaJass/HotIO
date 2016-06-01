@@ -150,8 +150,9 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
   var nodata = $('#report tbody .nodata').hide().clone();*/
 
   $(document).ready(function() {
-      getGraph();
-      timer=setInterval(wrapper,4000);
+      getGraph(); 
+      inter++;     
+      timer=setInterval(getGraph,5000);
       //drawGraph();
   });
 
@@ -316,24 +317,27 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
 
   var inter=0; 
 
-  function wrapper(){
-    inter++;
-    getGraph();
-    inter++;
-  }
+  /*function wrapper(){    
+    getGraph();        
+  }*/
  
-  function getGraph(start, end) {    
-      $('#graph .placeholder').html('<div style="padding: 40px 0 0 0; text-align: center; font-size: 18px">Loading...</div>');
-      $('#graph h1, #graph h2').html('&nbsp;');
-      $('#graph .metric1 h1').html('<i class="fa fa-spinner fa-spin"></i>');     
+  function getGraph(start, end) {
+      if(inter==0) {   
+        $('#graph .placeholder').html('<div style="padding: 40px 0 0 0; text-align: center; font-size: 18px">Loading...</div>');
+        $('#graph h1, #graph h2').html('&nbsp;');
+        $('#graph .metric1 h1').html('<i class="fa fa-spinner fa-spin"></i>'); 
+      }    
       var jsonurl = '/private/respond_data?page=json&type=graph';      
       /*jsonurl += '&web1=' + userprefs.metric1 + '&web2=' + userprefs.metric2;*/      
       if (typeof start != 'undefined' && typeof end != 'undefined' && start != null & end != null)
         jsonurl += '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end);
+      if(inter==0){
+        imGraph('graph',jsondata);
+      }
 
       $.getJSON(jsonurl, function(data) {
+          
           if (data.length != 0){
-            //alert(data);
             //jsonData=JSON.parse(data);
             //alert(data[0]);
             if(data[0]['clicks']!=undefined&&data[0]['people']!=undefined&&data[0]['conversions']!=undefined)
@@ -342,26 +346,13 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
               if(timer)
                 clearInterval(timer);
               imGraph('graph', data);
-            }else if(inter%2==0){
-              imGraph('graph',jsondata);              
-            }             
-          }else if(inter%2==0){
-              imGraph('graph',jsondata);              
-          } 
+            }            
+          }          
       });
 
   } 
 </script>
 
 </div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="afs_ads" style="color: #ccc; font-size: 10px; text-align: right; padding: 5px 0">ip-10-65-79-114</div>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
