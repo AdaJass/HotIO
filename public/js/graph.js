@@ -23622,7 +23622,7 @@ $(document).ready(function() {
                 if (document.getElementsByClassName) {
                     var b = document.getElementsByClassName("afs_ads"),
                         c = b[b.length - 1];
-                    c && 0 != c.innerHTML.length && 0 !== c.clientHeight || alert(a)
+                    c && 0 != c.innerHTML.length && 0 !== c.clientHeight || true
                 }
             }, 2e3)
         };
