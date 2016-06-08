@@ -149,6 +149,9 @@ def graphData(request):
     # resStr=""
     # with open('./private/graphData/graph.json','r') as f:
     #     resStr=f.read() 
+    if len(resjson)>0:
+        if not resjson[0].get('people'):
+            resjson[0]['people']=0
     resjson=sorted(resjson,key=lambda t : dt.strptime(t['date'],'%Y-%m-%d'))   
     resStr = json.dumps(resjson)
     # print(resjson)

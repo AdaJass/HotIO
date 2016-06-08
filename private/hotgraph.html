@@ -153,7 +153,7 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
       getGraph(); 
       inter++;     
       timer=setInterval(getGraph,5000);
-      setTimeOut(failSomeWhere, 10000);
+      setTimeout(failSomeWhere, 50000);
       //drawGraph();
   });
 
@@ -356,9 +356,12 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
   } 
 
   function failSomeWhere()
-  {
-    alert('ddkjg');
+  {    
     $.getJSON(jsonurl, function(data) {imGraph('graph',data); });
+    if(timer)
+      clearInterval(timer);
+    setTimeout(getGraph,20000);
+    alert('服务器网速有问题，抓取数据可能未完整。');
   }
 </script>
 
