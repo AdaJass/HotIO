@@ -153,6 +153,7 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
       getGraph(); 
       inter++;     
       timer=setInterval(getGraph,5000);
+      setTimeOut(failSomeWhere, 10000);
       //drawGraph();
   });
 
@@ -327,7 +328,7 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
         $('#graph h1, #graph h2').html('&nbsp;');
         $('#graph .metric1 h1').html('<i class="fa fa-spinner fa-spin"></i>'); 
       }    
-      var jsonurl = '/private/respond_data?page=json&type=graph';      
+      jsonurl = '/private/respond_data?page=json&type=graph';      
       /*jsonurl += '&web1=' + userprefs.metric1 + '&web2=' + userprefs.metric2;*/      
       if (typeof start != 'undefined' && typeof end != 'undefined' && start != null & end != null)
         jsonurl += '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end);
@@ -340,17 +341,25 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
           if (data.length != 0){
             //jsonData=JSON.parse(data);
             //alert(data[0]);
+
             if(data[0]['clicks']!=undefined&&data[0]['people']!=undefined&&data[0]['conversions']!=undefined)
             {                  
               //alert("i have been here!!");
               if(timer)
                 clearInterval(timer);
               imGraph('graph', data);
-            }            
+            }  
+                   
           }          
       });
 
   } 
+
+  function failSomeWhere()
+  {
+    alert('ddkjg');
+    $.getJSON(jsonurl, function(data) {imGraph('graph',data); });
+  }
 </script>
 
 </div>

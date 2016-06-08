@@ -8,6 +8,8 @@ from pathlib import Path as p
 import os
 import json
 
+timenow = dt.now()
+
 @aiohttp_jinja2.template('inputHotKey.jinja2')
 async def searchPage(request):
     data={}
@@ -63,7 +65,8 @@ async def responseResult(request):
     
     return web.Response(body=text.encode('utf-8'))
 
-async def beautyResultPage(request):    
+async def beautyResultPage(request): 
+    timenow=dt.now()   
     para = await request.post()
     #print(para, '  sssssss')
     
@@ -90,6 +93,8 @@ D={
     'zhihu':'clicks',
     'tieba':'conversions'
 }
+
+
 
 def graphData(request):
     n=0
@@ -137,7 +142,7 @@ def graphData(request):
                                 D[name]: js[key]
                             })
 
-    if n < 3:
+    if n < 3 and timenow+delta(0,20,0)>dt.now():
         return web.Response(body='no completed'.encode('utf-8'))
 
 
