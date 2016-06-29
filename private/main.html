@@ -25,12 +25,12 @@
     <style> 
 img{border:0}/* css 注释说明：设置图片边框为0 */ 
 body{behavior:url("csshover.htc");text-align:center;}/* css注释说明：兼容ie6 支持标签使用hover */ 
-.divcss5{ position:relative;width:554px; height:346px;margin:0 auto} 
+.divcss5{ position:relative;width:800px; height:600px;margin:0 auto} 
 .divcss5 a,.divcss5 span{display:none; text-decoration:none}
 .divcss5:hover{cursor:pointer} 
 .divcss5:hover a.now{cursor:pointer; position:absolute; top:0; width:100%; height:100%;
  z-index:100; left:0; display:block;}
-.divcss5:hover span{ display:block;position:absolute; bottom:0; left:0;color:#FFF;width:554px; 
+.divcss5:hover span{ display:block;position:absolute; bottom:0; left:0;color:#FFF;width:800px; 
 z-index:10;height:36px; line-height:36px; background:#000;filter:alpha(opacity=60);-moz-opacity:0.5;opacity: 0.5;}
 /* 设置显示文字定位位置，背景半透明 */ 
  
@@ -40,18 +40,30 @@ z-index:10;height:36px; line-height:36px; background:#000;filter:alpha(opacity=6
     <table >
         <tr>
             <td>
-                <img src="mainPics/IAVC.jpg"></td>
+            <div class="divcss5" style="background:url(mainPics/IAVC.jpg)">
+                    <span>查看数据表格</span>
+                    <a href="/private/viewdata.html" class="now">&nbsp;</a>
+                </div>
             <td>
-                <img src="mainPics/180DT5TF.jpg"></td>
+            <div class="divcss5" style="background:url(mainPics/180DT5TF.jpg)">
+                    <span>查看数据表格</span>
+                    <a href="/private/viewdata.html" class="now">&nbsp;</a>
+                </div>
 
         </tr>
 
         <tr>
             <td>
-                <img src="mainPics/investAmount_Total.jpg"></td>
+            <div class="divcss5" style="background:url(mainPics/investAmount_Total.jpg)">
+                    <span>查看数据表格</span>
+                    <a href="/private/viewdata.html" class="now">&nbsp;</a>
+                </div>
 
             <td>
-                <img src="mainPics/VCD.jpg"></td>
+            <div class="divcss5" style="background:url(mainPics/VCD.jpg)">
+                    <span>查看数据表格</span>
+                    <a href="/private/viewdata.html" class="now">&nbsp;</a>
+                </div>
 
         </tr>
 
