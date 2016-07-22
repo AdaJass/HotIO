@@ -20,15 +20,16 @@ async def login(request):
     data['title']='Hot' 
     data['main']=static.assets
     #print(dir(request),'\n\n')
+    rsp=web.Response()
     para = await request.post()
     if para['user'] == users['uid'] and para['psw'] == users['psw']:
-      res = aiohttp_jinja2.render_template('inputHotKey.jinja2',
-                                                request,
-                                                data)
-      res.set_cookie('Authentication','JDKEJKjdkjgkjKDJJKjiei439954JKJDFK9482jkgKJDKjgijiKDJ394')
+      #res = aiohttp_jinja2.render_template('inputHotKey.jinja2',request,data) 
+
+      rsp.set_cookie('Authentication','JDKEJKjdkjgkjKDJJKjiei439954JKJDFK9482jkgKJDKjgijiKDJ394')
+      return web.HTTPFound('/private/index.html')
     else:
       return web.HTTPFound('/')
-    return res
+    
 
 
 async def middleware_factory(app, handler):
