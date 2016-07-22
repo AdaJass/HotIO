@@ -28,6 +28,17 @@
     }
     </style>
   <div id="view31"></div>
-  <script type="text/javascript">$('#view31').csv2table('./data/sunwk.csv');</script>
+  <script type="text/javascript">
+
+  $('#view31').csv2table('./data/sunwk.csv',{
+    onload:function(id,op,data,ary){
+      $('#'+id)
+        .find('tr:even').css('background', '#EFFFBC').end()
+        .find('tr:odd').css('background', '#FFE0F2');
+    }
+  });
+
+
+  </script>
 </body>
 </html>
