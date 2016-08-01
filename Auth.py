@@ -24,9 +24,16 @@ async def login(request):
     para = await request.post()
     if para['user'] == users['uid'] and para['psw'] == users['psw']:
       #res = aiohttp_jinja2.render_template('inputHotKey.jinja2',request,data) 
-
+      
       rsp.set_cookie('Authentication','JDKEJKjdkjgkjKDJJKjiei439954JKJDFK9482jkgKJDKjgijiKDJ394')
-      return web.HTTPFound('/private/index.html')
+      rsp.body=b'''
+        <html> 
+        <head>          
+        <meta http-equiv="refresh" content="0;url=http://skysaga.vicp.io:9999/private/index.html"> 
+        </head>
+        </html>
+    '''
+      return rsp
     else:
       return web.HTTPFound('/')
     
