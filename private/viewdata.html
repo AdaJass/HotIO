@@ -18,13 +18,18 @@
   <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body>
+<body style="background-color: #006000; ">
 
   <style>
     #view31 .csv2table-table-th {
-      background-color  : #fff88c !important;
-      border-color      : #aaa    !important;
-      font-weight       : 150     !important;
+      background-color  : #28ff28 !important;
+      border-color      : #272727    !important;
+      font-weight       : bolder     !important;
+      font-size: 20px;
+    }
+    #view31{
+      font-family: '宋体';
+      font-size: 14px;            
     }
     </style>
   <div id="view31"></div>
@@ -35,6 +40,7 @@
       $('#'+id)
         .find('tr:even').css('background', '#EFFFBC').end()
         .find('tr:odd').css('background', '#FFE0F2');
+        $('td:nth-child(1)','#'+id).css('background','yellow');
     }
   });
 

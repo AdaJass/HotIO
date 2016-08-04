@@ -73,7 +73,7 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
             </li>
 
             <li>
-              <a href="/private/search">继续查</a>
+              <a href="/private/index.html">继续查</a>
             </li>
           </ul>
         </div>
@@ -360,8 +360,7 @@ mixpanel.init("eefb86c233fd45d58ffbbb6437a1cd96");</script>
     $.getJSON(jsonurl, function(data) {imGraph('graph',data); });
     if(timer)
       clearInterval(timer);
-    setTimeout(getGraph,20000);
-    alert('服务器网速有问题，抓取数据可能未完整。');
+    setTimeout(getGraph,20000);    
   }
 </script>
 
