@@ -1,0 +1,158 @@
+@import url("http://fonts.googleapis.com/css?family=Cabin:400,700,400italic");
+@lilac: #eac5eb;
+
+html, body, main {
+  font: 19px Cabin;
+  height: 100%;
+}
+
+figure {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+[graph] {
+  .graph(90%);
+}
+
+figcaption {
+  padding: 12px;
+  font-style: italic;
+}
+
+.graph(
+  @height: 560px,
+  @sect-width: 160px,
+
+  @stripe-width: 12px,
+  @stripe-color: (lighten(lightblue, 8%)),
+
+  @line-width: 5px,
+
+  @point-radius: 12px,
+  @point-color: @lilac) {
+
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  height: @height;
+
+  > * {
+    width: @sect-width;
+    height: 100%;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    border-right: 1px solid lightgray; 
+    
+    text-align: center;
+
+    &:last-child {
+      border-right: 0 none;
+      
+      > [data-point] {
+        width: 0;
+        height: 0;
+      }
+    }
+
+    &:hover {
+      font-weight: bold;
+      .downward-stripes(fadeout(@stripe-color, 70%), @stripe-width);
+    
+      [data-point]:before {
+        box-shadow: 0 0 5px 2px lightblue;
+      }
+      
+      &[title]:after {
+        content: attr(title);
+      }
+    }
+    
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 4em;
+      border-top: 1px solid lightgray;
+      background: white;
+    }
+  }
+
+  [data-point] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 125px;
+    width: 0;
+    border-width: 0 (@line-width / 2);
+    border-style: solid;
+    border-color: @point-color;
+    
+    -webkit-transform-origin: 50% 0;
+        -ms-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+    
+    .transition;
+    -webkit-backface-visibility: hidden;
+       
+    @gbottom: (darken(@point-color, 20%));
+    @gangle: 220deg;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: (-@point-radius);
+      top: (-@point-radius);
+  
+      width: ((@point-radius - 1) * 2px);
+      height: ((@point-radius - 1) * 2px);
+      border-radius: @point-radius;
+  
+      border: 1px solid @gbottom;
+      .gradient(~'@{point-color}, @{gbottom}', @gangle);
+      .transition;
+    }
+  
+    &:after {
+      content: '';
+      @r: (@point-radius * 0.35);
+      position: absolute;
+      top: (-@r);
+      left: (-@r);
+    
+      width: (2 * @r);
+      height: (2 * @r);
+      border-radius: @r;
+    
+      @clr: (darken(@point-color, 50%));
+      .gradient(~'@{clr}, @{gbottom}', @gangle);
+    }
+  }
+  
+}
+
+// ---------
+// Helpers
+// ---------
+
+.transition(@props: all, @dur: 0.25s, @easing: ease-in) {
+  -webkit-transition: @props @dur @easing;
+     -moz-transition: @props @dur @easing;
+          transition: @props @dur @easing;
+}
+
+.gradient(@stops, @angle: 180deg) {
+  background: -webkit-linear-gradient(@angle, @stops);
+  background: linear-gradient(@angle, @stops);
+}
+
+.downward-stripes(@color, @w) {
+  background: -webkit-repeating-linear-gradient(
+    -40deg, transparent, transparent @w, @color @w, @color (2 * @w));
+  background: repeating-linear-gradient(
+    -40deg, transparent, transparent @w, @color @w, @color (2 * @w));
+}

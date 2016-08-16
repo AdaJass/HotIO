@@ -1,0 +1,102 @@
+@import url("http://fonts.googleapis.com/css?family=Cabin:400,700,400italic");
+html,
+body,
+main {
+  font: 19px Cabin;
+  height: 100%;
+}
+figure {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+[graph] {
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  height: 90%;
+}
+[graph] > * {
+  width: 160px;
+  height: 100%;
+  float: left;
+  position: relative;
+  cursor: pointer;
+  border-right: 1px solid lightgray;
+  text-align: center;
+}
+[graph] > *:last-child {
+  border-right: 0 none;
+}
+[graph] > *:last-child > [data-point] {
+  width: 0;
+  height: 0;
+}
+[graph] > *:hover {
+  font-weight: bold;
+  background: -webkit-repeating-linear-gradient(-40deg, transparent, transparent 12px, rgba(204, 231, 240, 0.3) 12px, rgba(204, 231, 240, 0.3) 24px);
+  background: repeating-linear-gradient(-40deg, transparent, transparent 12px, rgba(204, 231, 240, 0.3) 12px, rgba(204, 231, 240, 0.3) 24px);
+}
+[graph] > *:hover [data-point]:before {
+  box-shadow: 0 0 5px 2px lightblue;
+}
+[graph] > *:hover[title]:after {
+  content: attr(title);
+}
+[graph] > *:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 4em;
+  border-top: 1px solid lightgray;
+  background: white;
+}
+[graph] [data-point] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 125px;
+  width: 0;
+  border-width: 0 2.5px;
+  border-style: solid;
+  border-color: #eac5eb;
+  -webkit-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+  -webkit-backface-visibility: hidden;
+}
+[graph] [data-point]:before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 12px;
+  border: 1px solid #cf79d1;
+  background: -webkit-linear-gradient(220deg, #eac5eb, #cf79d1);
+  background: linear-gradient(220deg, #eac5eb, #cf79d1);
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+}
+[graph] [data-point]:after {
+  content: '';
+  position: absolute;
+  top: -4.2px;
+  left: -4.2px;
+  width: 8.4px;
+  height: 8.4px;
+  border-radius: 4.2px;
+  background: -webkit-linear-gradient(220deg, #812d84, #cf79d1);
+  background: linear-gradient(220deg, #812d84, #cf79d1);
+}
+figcaption {
+  padding: 12px;
+  font-style: italic;
+}

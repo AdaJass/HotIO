@@ -96,6 +96,12 @@ D={
 
 
 
+
+
+
+
+
+
 def graphData(request):
     n=0
     resjson=[]

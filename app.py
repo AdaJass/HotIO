@@ -25,21 +25,46 @@ async def logout(request):
     res.set_cookie('Authentication','logout')
     return res
     
+@asyncio.coroutine
+def Database(future):
+    '''
+    data is from the http response in main module.
+    '''
+    global engine
+    engine = yield from create_engine(user='root',db='Hot',port=3306,
+                                     host='127.0.0.1', password='11111')
+    future.set_result(engine)
 
 
-app = web.Application(middlewares=[Auth.middleware_factory])
-aiohttp_jinja2.setup(app,
-    loader=jinja2.FileSystemLoader('./view'))
+@asyncio.coroutine
+def CloseDB():
+    engine.close()
+    yield from engine.wait_closed()    
+    pass
+# web.run_app(app,port=9999)
+async def init(loop):
+    app = web.Application(middlewares=[Auth.middleware_factory])
+    aiohttp_jinja2.setup(app,
+        loader=jinja2.FileSystemLoader('./view'))
 
-app.router.add_route('GET', '/', Auth.loginPage)
-app.router.add_route('GET', '/private/search', hot.searchPage)
-app.router.add_route('GET','/private/result_data', hot.responseResult)
-app.router.add_route('POST', '/login', Auth.login)
-app.router.add_route('POST', '/private/makesearch', hot.beautyResultPage)
-app.router.add_route('POST', '/succeedregist', vote.succeedregist)
-app.router.add_route('POST','/logout', logout)
-app.router.add_route('GET','/private/respond_data', hot.graphData)
-app.router.add_static('/static/', './bower_components')
-app.router.add_static('/private/', './private')
-app.router.add_static('/','./public')
-web.run_app(app,port=9999)
+    app.router.add_route('GET', '/', Auth.loginPage)
+    app.router.add_route('GET', '/private/search', hot.searchPage)
+    app.router.add_route('GET','/private/result_data', hot.responseResult)
+    app.router.add_route('POST', '/login', Auth.login)
+    app.router.add_route('POST', '/private/makesearch', hot.beautyResultPage)
+    app.router.add_route('POST', '/succeedregist', vote.succeedregist)
+    app.router.add_route('POST','/logout', logout)
+    app.router.add_route('GET','/private/respond_data', hot.graphData)
+    app.router.add_static('/static/', './bower_components')
+    app.router.add_static('/private/', './private')
+    app.router.add_static('/','./public')
+    srv = await loop.create_server(
+        app.make_handler(), '0.0.0.0', 9999)
+    return srv
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(init(loop))
+try:
+    loop.run_forever()
+except KeyboardInterrupt:
+    pass
