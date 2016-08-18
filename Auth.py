@@ -29,7 +29,7 @@ async def login(request):
       rsp.body=b'''
         <html> 
         <head>          
-        <meta http-equiv="refresh" content="0;url=http://skysaga.vicp.io:9999/private/index.html"> 
+        <meta http-equiv="refresh" content="0;url=/private/index.html"> 
         </head>
         </html>
     '''
@@ -49,7 +49,7 @@ async def middleware_factory(app, handler):
             return web.HTTPFound('/')
             
         else: 
-            #print(req.path)
+            # print(req.path)
             return await handler(req)
             pass
                 

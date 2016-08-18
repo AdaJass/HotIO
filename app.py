@@ -9,6 +9,8 @@ import Auth
 import staticfile as static
 import hot
 import vote
+from aiomysql.sa import create_engine
+from model import *
 
 # async def middleware_factory(app, handler):
 #     async def middleware_handler(request):        
@@ -49,22 +51,32 @@ async def init(loop):
 
     app.router.add_route('GET', '/', Auth.loginPage)
     app.router.add_route('GET', '/private/search', hot.searchPage)
-    app.router.add_route('GET','/private/result_data', hot.responseResult)
+    app.router.add_route('GET','/private/result_data', hot.hotData)
     app.router.add_route('POST', '/login', Auth.login)
-    app.router.add_route('POST', '/private/makesearch', hot.beautyResultPage)
+    app.router.add_route('POST', '/private/makesearch', hot.dynamicResultPage)
     app.router.add_route('POST', '/succeedregist', vote.succeedregist)
     app.router.add_route('POST','/logout', logout)
-    app.router.add_route('GET','/private/respond_data', hot.graphData)
+    # app.router.add_route('GET','/private/respond_data', hot.graphData)
     app.router.add_static('/static/', './bower_components')
+    app.router.add_static('/static/', './node_modules')
     app.router.add_static('/private/', './private')
     app.router.add_static('/','./public')
     srv = await loop.create_server(
         app.make_handler(), '0.0.0.0', 9999)
+    print('Sever starts at port: 9999')
     return srv
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(init(loop))
-try:
-    loop.run_forever()
-except KeyboardInterrupt:
-    pass
+if __name__ == '__main__':    
+    loop = asyncio.get_event_loop()
+    future = asyncio.Future()
+    asyncio.ensure_future(Database(future))
+    loop.run_until_complete(future)
+    engine = future.result() 
+
+    hot.initialDatabase(engine)  
+    
+    loop.run_until_complete(init(loop))
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        pass
