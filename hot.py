@@ -110,10 +110,11 @@ async def dynamicResultPage(request): #解析查询字符。调用Hot函数
     search['keyword']=para['keyword']
     global keyword
     keyword=para['keyword']
-    evalStr='start /MIN python ../Hot/main.py '+search['keyword']+' '\
+    evalStr='start /MIN python ../Hot/main.py'+search['keyword']+' '\
               +search['andDescript']+' '+search['orDescript']
-    print(evalStr)
+    # evalStr = evalStr.encode('ANSI')
     os.system(evalStr)
+    print(evalStr)
     return web.HTTPFound('/private/hotgraph')
 
 
