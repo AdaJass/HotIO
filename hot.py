@@ -17,6 +17,22 @@ def initialDatabase(db):
     global engine
     engine=db
 
+
+@aiohttp_jinja2.template('hotgraph.jinja2')
+async def hotPage(request):
+    data={}
+    data['title']='Hot' 
+    data['main']=static.assets 
+    data['main']['footerjs']=['/private/js/hotgraph.js']
+    data['main']['headerjs']=[
+        '/statics/chart.js/dist/Chart.min.js',
+        '/static/jquery/dist/jquery.min.js',    
+        '/static/bootstrap/dist/js/bootstrap.min.js'    
+    ] 
+
+    return data
+    pass
+
 @aiohttp_jinja2.template('inputHotKey.jinja2')
 async def searchPage(request):
     data={}
@@ -31,6 +47,8 @@ def hotData(request):  #返回数据
     global engine,keyword    
     baidu=[]
     sogou=[]
+    # return web.Response(body='S')
+
     with (yield from engine) as conn:            
         objt = yield from conn.execute(obj.select().where(obj.c.main==keyword))
         objid=0
@@ -49,27 +67,34 @@ def hotData(request):  #返回数据
     # print(len(sogou),'\n', sogou, end='\n up is sogou.')
     # print(len(baidu),'\n', baidu, end='\n up is baidu.')
 
-    res=[]
+    data=[]
     for i in range(73):
         try:
-            res.append(baidu[i]+sogou[i])
+            data.append(baidu[i]+sogou[i])
         except TypeError:
             if type(baidu[i]) == type(0):
-                res.append(baidu[i])
+                data.append(baidu[i])
             if type(sogou[i]) == type(0):
-                res.append(sogou[i])
+                data.append(sogou[i])
             if type(baidu[i]) != type(0) and type(sogou[i]) != type(0):
-                res.append(0)
-        except IndexError:
+                data.append(0)
+        except IndexError:            
             break   
-
-    return web.Response(body=str(res).encode('utf-8'))
+    res={}
+    if len(data)<72:
+        data=[0 for i in range(73)]
+    res['data']=data
+    res['title']=keyword
+    res['labels']=[i*5 for i in range(73,0,-1)]
+    res['labels'][72]='5天前'
+    res['labels'][0]='一年前'
+    res['labels'][36]='半年前'
+    return web.Response(body=json.dumps(res).encode('utf-8'),content_type='application/json')
 
 
 async def dynamicResultPage(request): #解析查询字符。调用Hot函数
     timenow=dt.now()   
-    para = await request.post()
-
+    para = await request.post()    
     search={}    
     if para['keyword']=='':
         return web.HTTPFound('/')
@@ -85,12 +110,11 @@ async def dynamicResultPage(request): #解析查询字符。调用Hot函数
     search['keyword']=para['keyword']
     global keyword
     keyword=para['keyword']
-
     evalStr='start /MIN python ../Hot/main.py '+search['keyword']+' '\
               +search['andDescript']+' '+search['orDescript']
     print(evalStr)
     os.system(evalStr)
-    return web.HTTPFound('/private/hotgraph/index.html')
+    return web.HTTPFound('/private/hotgraph')
 
 
 # @aiohttp_jinja2.template('searchResult.jinja2')

@@ -33,8 +33,9 @@ def Database(future):
     data is from the http response in main module.
     '''
     global engine
-    engine = yield from create_engine(user='root',db='Hot',port=3306,
-                                     host='127.0.0.1', password='11111')
+    engine = yield from create_engine(user='root',db='hot',port=3306,\
+                                        host='127.0.0.1', password='11111',\
+                                        echo=True, charset='utf8')
     future.set_result(engine)
 
 
@@ -52,13 +53,15 @@ async def init(loop):
     app.router.add_route('GET', '/', Auth.loginPage)
     app.router.add_route('GET', '/private/search', hot.searchPage)
     app.router.add_route('GET','/private/result_data', hot.hotData)
+    app.router.add_route('GET','/private/hotgraph', hot.hotPage)
+
     app.router.add_route('POST', '/login', Auth.login)
     app.router.add_route('POST', '/private/makesearch', hot.dynamicResultPage)
     app.router.add_route('POST', '/succeedregist', vote.succeedregist)
     app.router.add_route('POST','/logout', logout)
     # app.router.add_route('GET','/private/respond_data', hot.graphData)
     app.router.add_static('/static/', './bower_components')
-    app.router.add_static('/static/', './node_modules')
+    app.router.add_static('/statics/', './node_modules')
     app.router.add_static('/private/', './private')
     app.router.add_static('/','./public')
     srv = await loop.create_server(
