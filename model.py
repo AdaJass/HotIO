@@ -6,6 +6,7 @@ metadata = sa.MetaData()
 obj = sa.Table('objects', metadata,
                sa.Column('id', sa.Integer, primary_key=True),
                sa.Column('main', sa.String(255),  nullable=False),
+               sa.Column('weight',sa.Integer, nullable=True),
                sa.Column('andDescript',sa.String(255), nullable=True),
                sa.Column('orDescript',sa.String(255), nullable=True),
                )

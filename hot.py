@@ -7,11 +7,13 @@ import aiohttp_jinja2
 from pathlib import Path as p
 import os
 import json
+import shlex, subprocess
 from model import *
 
 timenow = dt.now()
-global keyword
+global keyword, w
 keyword=''
+w=1
 
 def initialDatabase(db):
     global engine
@@ -44,7 +46,7 @@ async def searchPage(request):
 @asyncio.coroutine
 def hotData(request):  #返回数据
     # print('hotData')
-    global engine,keyword    
+    global engine, keyword, w 
     baidu=[]
     sogou=[]
     # return web.Response(body='S')
@@ -53,7 +55,9 @@ def hotData(request):  #返回数据
         objt = yield from conn.execute(obj.select().where(obj.c.main==keyword))
         objid=0
         for row in objt:
-            objid=row.id       
+            print(row)
+            objid=row.id
+            w=row.weight      
         tem=yield from conn.execute(his.select().where(his.c.objectid == objid).order_by(his.c.dtime)) 
         yield from conn.execute('commit')
         ii=0
@@ -65,19 +69,19 @@ def hotData(request):  #返回数据
                 break
 
     # print(len(sogou),'\n', sogou, end='\n up is sogou.')
-    # print(len(baidu),'\n', baidu, end='\n up is baidu.')
+    # print('-----',objid,'-----','\n', baidu, end='\n up is baidu.')
 
     data=[]
     for i in range(73):
         try:
-            data.append(baidu[i]+sogou[i])
+            data.append(w*(baidu[i]+sogou[i]))
         except TypeError:
             if type(baidu[i]) == type(0):
-                data.append(baidu[i])
+                data.append(baidu[i]*w)
             if type(sogou[i]) == type(0):
-                data.append(sogou[i])
+                data.append(sogou[i]*w)
             if type(baidu[i]) != type(0) and type(sogou[i]) != type(0):
-                data.append(0)
+                data.append(w)
         except IndexError:            
             break   
     res={}
@@ -110,11 +114,11 @@ async def dynamicResultPage(request): #解析查询字符。调用Hot函数
     search['keyword']=para['keyword']
     global keyword
     keyword=para['keyword']
-    evalStr='start /MIN python ../Hot/main.py'+search['keyword']+' '\
+    evalStr='python ../Hot/main.py '+search['keyword']+' '\
               +search['andDescript']+' '+search['orDescript']
-    # evalStr = evalStr.encode('ANSI')
-    os.system(evalStr)
-    print(evalStr)
+    evalStr = shlex.split(evalStr)
+    # print(evalStr)
+    subprocess.Popen(evalStr)    
     return web.HTTPFound('/private/hotgraph')
 
 
