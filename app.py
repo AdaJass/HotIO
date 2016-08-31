@@ -1,6 +1,3 @@
-import sys
-import os
-os.chdir(sys.path[0])
 import asyncio
 from aiohttp import web
 import aiohttp_jinja2

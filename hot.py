@@ -49,6 +49,7 @@ def hotData(request):  #返回数据
     global engine, keyword, w 
     baidu=[]
     sogou=[]
+    _360=[]
     # return web.Response(body='S')
 
     with (yield from engine) as conn:            
@@ -65,6 +66,7 @@ def hotData(request):  #返回数据
             ii+=1            
             baidu.append(row.baidu_pages)
             sogou.append(row.sogou_pages)
+            _360.append(row._360_pages)
             if ii>=73:
                 break
 
@@ -74,13 +76,16 @@ def hotData(request):  #返回数据
     data=[]
     for i in range(73):
         try:
-            data.append(w*(baidu[i]+sogou[i]))
+            data.append(w*(baidu[i]+sogou[i]+_360[i]))
         except TypeError:
-            if type(baidu[i]) == type(0):
-                data.append(baidu[i]*w)
-            if type(sogou[i]) == type(0):
-                data.append(sogou[i]*w)
-            if type(baidu[i]) != type(0) and type(sogou[i]) != type(0):
+            tem=[baidu[i],sogou[i], _360[i]]
+            akgd=filter(lambda x:type(x) == type(0), tem)  
+            tt=0
+            for i in akgd:
+                tt += i
+            if tt:
+                data.append(w*tt)
+            else:
                 data.append(w)
         except IndexError:            
             break   
