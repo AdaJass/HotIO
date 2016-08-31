@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>ViewInvestData</title>
+
+  <!-- Bootstrap -->
+  <script src="/static/jquery/dist/jquery.min.js" type="text/javascript"></script>
+  <script src="/js/jquery.csv2table-0.02-b-1.7.js" type="text/javascript" charset="utf-8"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body style="background-color: #006000; ">
+
+  <style>
+    #view31 .csv2table-table-th {
+      background-color  : #28ff28 !important;
+      border-color      : #272727    !important;
+      font-weight       : bolder     !important;
+      font-size: 20px;
+    }
+    #view31{
+      font-family: '宋体';
+      font-size: 14px;            
+    }
+    </style>
+  <div id="view31"></div>
+  <script type="text/javascript">
+
+  $('#view31').csv2table('./data/sunwk.csv',{
+    onload:function(id,op,data,ary){
+      $('#'+id)
+        .find('tr:even').css('background', '#EFFFBC').end()
+        .find('tr:odd').css('background', '#FFE0F2');
+        $('td:nth-child(1)','#'+id).css('background','yellow');
+    }
+  });
+
+
+  </script>
+</body>
+</html>

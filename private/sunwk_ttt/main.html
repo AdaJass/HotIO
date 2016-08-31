@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>主图</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0" /> -->
+    <script type="text/javascript">
+    var docElm = document.documentElement;
+//W3C  
+    if (docElm.requestFullscreen) {  
+        docElm.requestFullscreen();  
+    }
+    //FireFox  
+    else if (docElm.mozRequestFullScreen) {  
+        docElm.mozRequestFullScreen();  
+    }
+    //Chrome等  
+    else if (docElm.webkitRequestFullScreen) {  
+        docElm.webkitRequestFullScreen();  
+    }
+    //IE11
+    else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+    </script>
+
+    <style> 
+img{border:0}/* css 注释说明：设置图片边框为0 */ 
+body{behavior:url("csshover.htc");text-align:center;}/* css注释说明：兼容ie6 支持标签使用hover */ 
+.divcss5{ position:relative;width:800px; height:600px;margin:0 auto} 
+.divcss5 a,.divcss5 span{display:none; text-decoration:none}
+.divcss5:hover{cursor:pointer} 
+.divcss5:hover a.now{cursor:pointer; position:absolute; top:0; width:100%; height:100%;
+ z-index:100; left:0; display:block;}
+.divcss5:hover span{ display:block;position:absolute; bottom:0; left:0;color:#FFF;width:800px; 
+z-index:10;height:36px; line-height:36px; background:#000;filter:alpha(opacity=60);-moz-opacity:0.5;opacity: 0.5;}
+/* 设置显示文字定位位置，背景半透明 */ 
+ 
+</style>
+</head>
+<body>
+    <table >
+        <tr>
+            <td>
+            <div class="divcss5" style="background:url(mainPics/IAVC.jpg)">
+                    
+                </div>
+            <td>
+            <div class="divcss5" style="background:url(mainPics/180DT5TF.jpg)">
+            </div>
+
+        </tr>
+
+        <tr>
+            <td>
+            <div class="divcss5" style="background:url(mainPics/investAmount_Total.jpg)">
+            </div>
+
+            <td>
+            <div class="divcss5" style="background:url(mainPics/VCD.jpg)">
+            </div>
+
+        </tr>
+
+        <tr>
+            <td>
+                <div class="divcss5" style="background:url(mainPics/SDVCR3Y.jpg)">
+                    <span>查看数据</span>
+                    <a href="./data/rundata.txt" class="now">&nbsp;</a>
+                </div>
+            </td>
+
+            <td>
+                <div class="divcss5" style="background:url(mainPics/investAmout_in_Field.jpg)">                    
+                </div>
+
+            </td>
+
+        </tr>
+
+    </table>
+</body>
+</html>
