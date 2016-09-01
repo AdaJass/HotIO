@@ -30,7 +30,7 @@ var getData = function() {
                 }]
             };      
             $("#myChart").remove();
-            $("#main").append('<canvas id="myChart"></canvas>');
+            $("#main").append('<canvas height="200px" width="300px" id="myChart"></canvas>');
             ctx = $("#myChart");
             myLineChart = new Chart(ctx, {
                 type: 'line',
@@ -41,10 +41,18 @@ var getData = function() {
 }
 //getData();
 var endIt=function(){
-    var addkey ='<form action="/private/makesearch_add" method="post">   <div class="form-group"> <label for="hotkey"  class="control-label">关键字:</label>            <input type="text" class="form-control" name="keyword" required id="hotkey" placeholder="请输入关键词，多于一个词的用$连接"></div></div> </form>';
+    var addkey ='<br><br><br><br><br><br><br>'+
+    '<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">'+
+    '<div class="container">'+      
+      '<input type="text" id="keyword" class="form-control" placeholder="添加关键字，关键字间以$替代空格连接">'+
+      '<input type="text" id="andDescript" class="form-control" placeholder="添加与描述，关键字间以$替代空格连接">'+
+      '<input type="text" id="orDescript" class="form-control" placeholder="添加或描述，关键字间以$替代空格连接">'+
+      '<button type="button" id="addword" class="btn btn-default navbar-btn">添加</button>'+
+    '</div>'+
+  '</nav>';
     $("#main").append(addkey);  
     clearInterval(inter);
 }
 getData();
 inter = setInterval("getData()", 4000);
-setTimeout("endIt()",40000);
+setTimeout("endIt()",10000);
