@@ -30,7 +30,7 @@ var getData = function() {
                 }]
             };      
             $("#myChart").remove();
-            $("#main").append('<canvas id="myChart" width="350" height="150"></canvas>');
+            $("#main").append('<canvas id="myChart"></canvas>');
             ctx = $("#myChart");
             myLineChart = new Chart(ctx, {
                 type: 'line',
@@ -40,7 +40,9 @@ var getData = function() {
     });
 }
 //getData();
-var endIt=function(){    
+var endIt=function(){
+    var addkey ='<form action="/private/makesearch_add" method="post">   <div class="form-group"> <label for="hotkey"  class="control-label">关键字:</label>            <input type="text" class="form-control" name="keyword" required id="hotkey" placeholder="请输入关键词，多于一个词的用$连接"></div></div> </form>';
+    $("#main").append(addkey);  
     clearInterval(inter);
 }
 getData();
