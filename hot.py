@@ -56,7 +56,7 @@ def hotData(request):  #返回数据
         objt = yield from conn.execute(obj.select().where(obj.c.main==keyword))
         objid=0
         for row in objt:
-            print(row)
+            # print(row)
             objid=row.id
             w=row.weight      
         tem=yield from conn.execute(his.select().where(his.c.objectid == objid).order_by(his.c.dtime)) 
@@ -76,7 +76,7 @@ def hotData(request):  #返回数据
     data=[]
     for i in range(73):
         try:
-            data.append(w*(baidu[i]+sogou[i]+_360[i]))
+            data.append(w*(0.265*baidu[i]+0.335*sogou[i]+0.4*_360[i]))
         except TypeError:
             tem=[baidu[i],sogou[i], _360[i]]
             akgd=filter(lambda x:type(x) == type(0), tem)  

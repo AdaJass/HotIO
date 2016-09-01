@@ -1,8 +1,7 @@
 var ctx = $("#myChart");
-
 var getData = function() {
     $.get('/private/result_data', function(data, status) {
-        if (status == 'success') {
+        if (status == 'success') {                     
             linedata = {
                 labels: data.labels,
                 datasets: [{
@@ -29,16 +28,21 @@ var getData = function() {
                     data: data.data,
                     spanGaps: false,
                 }]
-            };            
-            
+            };      
+            $("#myChart").remove();
+            $("#main").append('<canvas id="myChart" width="350" height="150"></canvas>');
+            ctx = $("#myChart");
             myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: linedata
-            });
-            
+            });            
         }
     });
 }
 //getData();
-inter = setInterval("getData()", 3000);
-setTimeout(function(){clearInterval(inter);},30000);
+var endIt=function(){    
+    clearInterval(inter);
+}
+getData();
+inter = setInterval("getData()", 4000);
+setTimeout("endIt()",40000);
