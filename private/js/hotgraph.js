@@ -1,4 +1,4 @@
-var ctx = $("#myChart");
+﻿var ctx = $("#myChart");
 var lineSets = [];
 var lineNum = 0;
 var getColor=function(){
@@ -65,7 +65,7 @@ var makeSearch=function(){
             getData();
             $("#addkey").remove();
             inter = setInterval("getData()", 4000);
-            setTimeout("endIt()", 10000);
+            setTimeout("endIt()", 40000);
         }
     });    
 }
@@ -89,4 +89,4 @@ var endIt = function() {
 }
 getData();
 var inter = setInterval("getData()", 4000);
-setTimeout("endIt()", 10000);
+setTimeout("endIt()", 40000);
