@@ -3,4 +3,14 @@
 <div id="container">
     <canvas id="myChart" width="200" height="100"></canvas>
 </div>
+<div id="addkey">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <input type="text" id="keyword" class="form-control" placeholder="添加关键字，关键字间以$替代空格连接">
+            <input type="text" id="andDescript" class="form-control" placeholder="添加与描述，关键字间以$替代空格连接">
+            <input type="text" id="orDescript" class="form-control" placeholder="添加或描述，关键字间以$替代空格连接">
+            <button id="btn" type="button" onclick="makeSearch()" id="addword" class="btn btn-default navbar-btn" disabled="true">添加</button>
+        </div>
+    </nav>
+</div>
 {% endblock %}

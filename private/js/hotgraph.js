@@ -43,6 +43,7 @@ var getData = function() {
                 datasets: lineSets
             };
             $("#myChart").remove();
+            $("iframe").remove();
             $("#container").append('<canvas id="myChart" width="200" height="100"></canvas>');
             ctx = $("#myChart");
             myLineChart = new Chart(ctx, {
@@ -62,31 +63,22 @@ var makeSearch=function(){
     $.post('/private/makesearch',postdata,function(data,status){
         if(status='success'){
             lineNum++;
-            getData();
-            $("#addkey").remove();
+            //getData();
+            $('#btn').attr('disabled','true');
             inter = setInterval("getData()", 4000);
-            setTimeout("endIt()", 40000);
+            setTimeout("endIt()", 34000);
         }
     });    
 }
 
 //getData();
 var endIt = function() {
-    var addkey = '<div id="addkey">'+
-        '<nav class="navbar navbar-default" role="navigation">' +
-        '<div class="container">' +
-        '<input type="text" id="keyword" class="form-control" placeholder="添加关键字，关键字间以$替代空格连接">' +
-        '<input type="text" id="andDescript" class="form-control" placeholder="添加与描述，关键字间以$替代空格连接">' +
-        '<input type="text" id="orDescript" class="form-control" placeholder="添加或描述，关键字间以$替代空格连接">' +
-        '<button type="button" onclick="makeSearch()" id="addword" class="btn btn-default navbar-btn">添加</button>' +
-        '</div>' +
-        '</nav></div>';
-    $("#main").append(addkey);
+    $('#btn').removeAttr("disabled");  
     clearInterval(inter);
-    getData();
+    //getData();
     //ctx.width=910;
     //ctx.height=455;
 }
 getData();
 var inter = setInterval("getData()", 4000);
-setTimeout("endIt()", 40000);
+setTimeout("endIt()", 34000);
