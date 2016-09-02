@@ -123,7 +123,8 @@ async def dynamicResultPage(request): #解析查询字符。调用Hot函数
               +search['andDescript']+' '+search['orDescript']
     evalStr = shlex.split(evalStr)
     # print(evalStr)
-    subprocess.Popen(evalStr)    
+    subprocess.Popen(evalStr)
+    print(search,end='\n this is posted data.')    
     return web.HTTPFound('/private/hotgraph')
 
 

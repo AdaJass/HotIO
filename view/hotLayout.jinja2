@@ -1,40 +1,36 @@
 <!doctype html>
 <html class="no-js" lang="zh-cn">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{{ title }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-        {% for item in main.css %}
-        <link rel="stylesheet" href="{{item}}">
-        {% endfor %}
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    {% for item in main.css %}
+    <link rel="stylesheet" href="{{item}}">
+    {% endfor %}
 
         {% for item in main.headerjs %}
-        <script src="{{item}}"></script>
-        {% endfor %}
+    <script src="{{item}}"></script>
+    {% endfor %}
 
-        {% block css %}
+    {% block css %}
+    <style type="text/css">
         
-        {% endblock %}
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="main">                
-                {% block content %}{% endblock %}
-            </div>
+    </style>
+    {% endblock %}
+</head>
+<body>
+    <div id="wrapper">
+        <div id="main">{% block content %}{% endblock %}</div>
 
-        </div>
-
-        {% for item in main.footerjs %}
-        <script src="{{item}}"></script>
-        {% endfor %}
+    </div>
+    {% for item in main.footerjs %}
+    <script src="{{item}}"></script>
+    {% endfor %}
 
         {% block js %}{% endblock %}
-
-    
-    </body>
+</body>
 </html>
