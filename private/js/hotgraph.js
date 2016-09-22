@@ -64,7 +64,7 @@ var makeSearch=function(){
         if(status='success'){
             lineNum++;
             //getData();
-            $('#btn').attr('disabled','true');
+            //$('#btn').attr('disabled','true');
             inter = setInterval("getData()", 4000);
             setTimeout("endIt()", 34000);
         }
@@ -73,7 +73,7 @@ var makeSearch=function(){
 
 //getData();
 var endIt = function() {
-    $('#btn').removeAttr("disabled");  
+    //$('#btn').removeAttr("disabled");  
     clearInterval(inter);
     //getData();
     //ctx.width=910;
