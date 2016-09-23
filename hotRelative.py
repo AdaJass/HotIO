@@ -15,7 +15,7 @@ def initialDatabase(db):
     global engine
     engine=db
 
-def getRelateData():  #it return two rough array that gona to be analyse    
+def getRelateData():  #it return all rough array for each keyword that gona to be analyse    
     for index,keyword in enumerate(RelatKeys):
         baidu=[]
         sogou=[]
@@ -79,6 +79,24 @@ def coreRelative(s1,s2):  #it just compare two array sets relativity.
     return r       
     pass
 
-def controler():
+def controler():   #shifts the arrays and make relative indicator largest and them out put
+                   #all except the first one, compare to the first array.
+    s1=[],s2=[],r=[]
+    for i in range(1,len(AllData)):
+        r.append([])
+        for j in range(36):
+            s1=AllData[0][j:]
+            if j==0:
+                s2=AllData[i]
+            else:
+                s2=AllData[i][0:-j]
+            r[i-1].append(coreRelative(s1,s2))
 
+    output=[]
+    for arr in r:
+        maxitem = max(arr)
+        maxindex = arr.index(maxitem)
+        output.append([maxindex,maxitem])
+
+    return output
     pass
