@@ -9,18 +9,20 @@ import os
 import json
 from model import *
 
-RelatKeys=[]
-AllData=[]
+RelatKeys=[]  #保存着所有待分析的词，第一个是中心词
+AllData=[]    #保存着所有待分析词的对应数据
 def initialDatabase(db):
     global engine
     engine=db
 
-def getRelateData():  #it return all rough array for each keyword that gona to be analyse    
-    for index,keyword in enumerate(RelatKeys):
+@asyncio.coroutine
+def getRelateData(keyword):  #it return all rough array for each keyword that gona to be analyse    
+    # for index,keyword in enumerate(RelatKeys):
+    if len(RelatKeys) > len(AllData):
         baidu=[]
         sogou=[]
-        _360=[]
-        data=[]
+        _360 =[]
+        data= []
         with (yield from engine) as conn:            
             objt = yield from conn.execute(obj.select().where(obj.c.main==keyword))
             objid=0
@@ -81,6 +83,7 @@ def coreRelative(s1,s2):  #it just compare two array sets relativity.
 
 def controler():   #shifts the arrays and make relative indicator largest and them out put
                    #all except the first one, compare to the first array.
+                   #output the max correlation coefficient coresponding and its shift by each keyword.
     s1=[],s2=[],r=[]
     for i in range(1,len(AllData)):
         r.append([])
@@ -99,4 +102,27 @@ def controler():   #shifts the arrays and make relative indicator largest and th
         output.append([maxindex,maxitem])
 
     return output
+    pass
+
+
+def compare2(keyword):   #shifts the arrays and make relative indicator largest and them out put
+                          #compare the keyword relative data to the first array.
+                          #output the max correlation coefficient coresponding and its shift by each keyword.
+    s1=[]
+    s2=[]
+    r=[]
+    index=RelatKeys.index(keyword)
+    for j in range(36):
+        s1=AllData[0][j:]
+        if j==0:
+            s2=AllData[index]
+        else:
+            s2=AllData[index][0:-j]
+        r.append(coreRelative(s1,s2))
+
+     
+    maxitem = max(r)
+    maxindex = r.index(maxitem)   
+
+    return [maxindex,maxitem]
     pass

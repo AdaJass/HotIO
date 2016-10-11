@@ -9,6 +9,7 @@ import os
 import json
 import shlex, subprocess
 from model import *
+import hotRelative as hrl
 
 timenow = dt.now()
 global keyword, w
@@ -46,7 +47,7 @@ async def searchPage(request):
 @asyncio.coroutine
 def hotData(request):  #返回数据
     # print('hotData')
-    global engine, keyword, w 
+    global engine, keyword, w     
     baidu=[]
     sogou=[]
     _360=[]
@@ -89,11 +90,23 @@ def hotData(request):  #返回数据
                 data.append(w)
         except IndexError:            
             break   
-    res={}
+    res = {}
     if len(data)<72:
         data=[0 for i in range(73)]
+
     res['data']=data
-    res['title']=keyword
+    if request.GET.get('end'):        
+        if not hrl.RelatKeys.count(keyword):
+            hrl.RelatKeys.append(keyword)            
+            yield from hrl.getRelateData(keyword)
+        if len(hrl.RelatKeys)>1:
+            rela=hrl.compare2(keyword)
+            title=keyword+'  相位'+str(rela[0])+'  系数：'+str(rela[1])[0:4]
+            res['title'] = title
+        else:
+            res['title'] = keyword
+    else:
+            res['title']=keyword
     res['labels']=[i*5 for i in range(73,0,-1)]
     res['labels'][72]='5天前'
     res['labels'][0]='一年前'
@@ -116,6 +129,10 @@ async def dynamicResultPage(request): #解析查询字符。调用Hot函数
     else:
         search['orDescript']=para['orDescript']
 
+    if not para.get('add'):    
+        hrl.RelatKeys=[]
+        hrl.AllData=[]
+
     search['keyword']=para['keyword']
     global keyword
     keyword=para['keyword']
@@ -124,6 +141,7 @@ async def dynamicResultPage(request): #解析查询字符。调用Hot函数
     evalStr = shlex.split(evalStr)
     # print(evalStr)
     subprocess.Popen(evalStr)
+
     print(search,end='\n this is posted data.')    
     return web.HTTPFound('/private/hotgraph')
 

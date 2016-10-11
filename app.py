@@ -8,6 +8,7 @@ import hot
 import vote
 from aiomysql.sa import create_engine
 from model import *
+import hotRelative as hrl
 
 # async def middleware_factory(app, handler):
 #     async def middleware_handler(request):        
@@ -74,6 +75,7 @@ if __name__ == '__main__':
     engine = future.result() 
 
     hot.initialDatabase(engine)  
+    hrl.initialDatabase(engine)
     
     loop.run_until_complete(init(loop))
     try:
