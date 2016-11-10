@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>一直投</title>
+    <title>test</title>
    <meta charset="utf-8">
+   <meta name="viewport" content="width=320px, user-scalable=no, initial-scale=1, maximum-scale=1">
    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
    <script type="text/javascript">
    	$(function(){
@@ -12,33 +13,31 @@
         winHeight= $(window).height();
     }
 });
+    /*$(window).bind('resize load', function(){
+    $("body").css("zoom", $(window).width() / 640);
+    $("body").css("display" , "block");
+    });   */
    </script>
 </head>
 <body onResize="Resize()" onLoad="Resize()">
-<iframe marginwidth="" height="300" scrolling="yes" src="./regist.html"></iframe>
+<!-- <div align="center" style="margin:0 auto;"> -->
+
+    <!-- <div style="width:200px;height:50px;overflow:hidden;border:0px"> 
+         <div style="width:500px;height:800px;margin:-1048px 0px 
+
+0px -300px;"> -->
+              <iframe  width="800" height="1500" scrolling="no" src="http://www.qifengle.com/activity/vote/investor-view?id=99"></iframe>
+         <!-- </div> 
+     </div>  -->
+<!-- </div> --> 
+
+   
 <br>
-<br>
-    <a href="#" onclick="gotovote()"><b>一键投票</b></a>&nbsp;&nbsp;
-    <a href="#" onclick="gotoregist()"><b>继续注册</b></a>&nbsp;&nbsp;
-    <a href="#" onclick="gotoresult()"><b>投票页面</b></a>&nbsp;&nbsp;<br>
+<br>    
     注：注册显示成功后，可以点击【一键投票】进行投票。<br>
     一键投票后返回的"status"当且仅当是 1 表示投票成功,<br>
     你也可以在注册成功后进入【投票页面】投票。
 
-<script type="text/javascript">
-    var gotovote=function(){
-        $('iframe').attr('src','./voteit.html');
-    };
 
-    var gotoregist=function(){
-        $('iframe').attr('src','./regist.html');
-    };
-
-    var gotoresult=function(){
-        $('iframe').attr('src','http://iyiou.com/a/inno2016/vote_detail/id/8/type/15');
-    };
-
-    
-</script>
 </body>
 </html>
